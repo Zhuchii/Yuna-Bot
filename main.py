@@ -12,9 +12,7 @@ import re
 from cogs.music import music
 from cogs.help import help
 from cogs.fun import fun
-#Loop bot
 
-#AIzaSyAKW1k0uuI26qFAJhM2Kj5oTQVVu27K7kc
 voice_clients = {}
 queues = {}
 yt_dl_options = {"format": "bestaudio/best"}
@@ -30,11 +28,11 @@ global_queue = deque()
 
 def conectar():
     return psycopg2.connect(
-        host='bocyvag1izqpqkhqbct4-postgresql.services.clever-cloud.com' ,
-        user='ubgd5rionxagg2o3r25h',
-        password='JNisggrGpkXGvr1yoVPnC3cOLOs8cf',
+        host= ,
+        user=,
+        password=,
         port='50013',
-        database='bocyvag1izqpqkhqbct4'
+        database=
 ) 
 
 
@@ -60,7 +58,7 @@ def admin(x):
 
 
 
-TOKEN='MTIyNTk2MzI5MDM1ODcxNDQ4Mg.GWqS6u.1o7tzl3li1nasji5HvkvW3zRMrVD_C8epWMiKA'
+TOKEN=[Your token here]
 bot = commands.Bot(command_prefix="-", intents=discord.Intents.all(), help_command=None)
 
 
