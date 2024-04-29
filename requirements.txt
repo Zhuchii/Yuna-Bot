@@ -1,0 +1,8 @@
+discord.py
+mysql.connector
+psycopg2-binary
+pytube
+youtube_search
+yt_dlp
+PyNacl
+colorama
