@@ -12,6 +12,8 @@ import re
 from cogs.music import music
 from cogs.help import help
 from cogs.fun import fun
+from cogs.ttt import ttt
+from cogs.guess import guess
 
 voice_clients = {}
 queues = {}
@@ -20,7 +22,6 @@ ytdl = yt_dlp.YoutubeDL(yt_dl_options)
 ffmpeg_options = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','options': '-vn -filter:a "volume=1"'}
 
 def clean_filename(title):
-    # Eliminar caracteres no válidos para nombres de archivo
     cleaned_title = re.sub(r'[\\/*?:"<>|]', '_', title)
     return cleaned_title
 
@@ -28,11 +29,11 @@ global_queue = deque()
 
 def conectar():
     return psycopg2.connect(
-        host= ,
-        user=,
-        password=,
-        port='50013',
-        database=
+        host='' ,
+        user='',
+        password='',
+        port='',
+        database=''
 ) 
 
 
@@ -58,7 +59,7 @@ def admin(x):
 
 
 
-TOKEN=[Your token here]
+TOKEN=''
 bot = commands.Bot(command_prefix="-", intents=discord.Intents.all(), help_command=None)
 
 
@@ -134,9 +135,6 @@ async def add(ctx):
         print('No se ah podido añadir el servidor')
     cursor.close()
     conection.close()
-
-
-
 
 
 @bot.command()
@@ -216,57 +214,7 @@ async def add_admin(ctx: discord.Interaction, user: discord.User):
   cursor.close()
   conection.close()
 
-@bot.command()
-async def enviar(ctx):
-  conection=conectar()
-  cursor=conection.cursor()
-  usuario_id = ctx.author.id
-  if usuario_id==791382250959798272:
-    await ctx.send("Por favor, ingresa la ID del canal al que quieres enviar el mensaje:")
-    def check(m):
-        return m.author == ctx.message.author and m.channel == ctx.message.channel
 
-    try:
-        canalid = await bot.wait_for('message', check=check, timeout=30)
-        canalid = int(canalid.content) 
-    except TimeoutError:
-        await ctx.send("Tiempo agotado. Comando cancelado.")
-        return
-    canal = bot.get_channel(canalid)
-
-    if canal:
-        await ctx.send("Por favor, ingresa el mensaje que quieres enviar:")
-
-        try:
-            mensaje = await bot.wait_for('message', check=check, timeout=30)
-        except TimeoutError:
-            await ctx.send("Tiempo agotado. Comando cancelado.")
-            return
-        await canal.send(mensaje.content)
-        await ctx.send(f"Mensaje enviado correctamente al canal con ID {canalid}.")
-    else:
-        await ctx.send(f"No se pudo encontrar el canal con ID {canalid}.")
-  else:
-    await ctx.reply('Acceso denegado')
-  cursor.close()
-  conection.close()
-
-@bot.tree.command(
-  name='enviar',
-  description='Haz que el bot envie el mensaje que quieras al canal que quieras'
-)
-async def enviar(ctx, canal: discord.TextChannel, mensaje: str):
-  conection=conectar()
-  cursor=conection.cursor()
-  usuario_id = ctx.user.id
-  e=admin(usuario_id)
-  if e:
-    await canal.send(mensaje)
-    await ctx.response.send_message(f"Mensaje enviado correctamente al canal {canal}.")
-  else:
-    await ctx.response.send_message('Acceso denegado')
-  cursor.close()
-  conection.close()
 
 @bot.command()
 async def s(ctx):
@@ -338,9 +286,11 @@ async def set_joinch(ctx, arg1):
   
 
 async def startcog():
-  bot.add_cog(music(bot))
-  bot.add_cog(help(bot))
-  bot.add_cog(fun(bot))
+  await bot.add_cog(music(bot))
+  await bot.add_cog(help(bot))
+  await bot.add_cog(fun(bot))
+  await bot.add_cog(ttt(bot))
+  await bot.add_cog(guess(bot))
   
 asyncio.run(startcog())
 
