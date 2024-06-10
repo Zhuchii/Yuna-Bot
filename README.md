@@ -26,4 +26,8 @@ or
 python main.py
 ```
 
+### Additional dependencies
+-FFmpeg
+
+
 P.D Im working on roleplay commands with anime gifs and maybe some moderation commands ;)
