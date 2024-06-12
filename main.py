@@ -14,6 +14,8 @@ from cogs.help import help
 from cogs.fun import fun
 from cogs.ttt import ttt
 from cogs.guess import guess
+from cogs.moderation import moderation
+from discord import app_commands
 import json
 
 with open('config.json') as config_file:
@@ -72,7 +74,9 @@ async def startcog():
   await bot.add_cog(fun(bot))
   await bot.add_cog(ttt(bot))
   await bot.add_cog(guess(bot))
+  await bot.add_cog(moderation(bot))
   
 asyncio.run(startcog())
+
 
 bot.run(TOKEN)
