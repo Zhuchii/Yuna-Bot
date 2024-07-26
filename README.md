@@ -1,7 +1,7 @@
 # Yunabot
 A discord.py with random funny commands and minigames
 
-the bot is already working add it to your server:
+The bot is already working add it to your server:
 
 https://discord.com/oauth2/authorize?client_id=1168867005101768714&permissions=1982663716304&scope=bot
 
