@@ -1,7 +1,7 @@
 # Yunabot
 A discord.py bot with random funny commands and minigames
 
-#### Music not workin? Give thanks to Youtube!
+#### Music isn't working? Give thanks to Youtube!
 
 The bot is already working add it to your server:
 
