@@ -1,6 +1,8 @@
 {
     "///////////////////////////BOT//////////////////////////":"",
-    "prefix":"",
-    "token":""
-
+    "prefix":"The prefix that the bot is gonna use",
+    "token":"Your Discord's bot token",
+    "hf_url" : "url from huggin face to generate images (it stopped working ill figure it out c:)",
+    "gemini-ai-api": "Your gemini api key for the ai chat",
+    "ai-prompt": "The prompt for the ai"
 }
