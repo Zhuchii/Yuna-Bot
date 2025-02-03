@@ -6,3 +6,7 @@ youtube_search
 yt_dlp
 PyNacl
 colorama
+gradio
+groq
+pillow
+google-generativeai
