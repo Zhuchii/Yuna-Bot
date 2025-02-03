@@ -7,17 +7,24 @@ from colorama import init, Fore, Back, Style
 from collections import deque
 from youtube_search import YoutubeSearch
 import yt_dlp
+import datetime
+import re
 
 
 
 
-yt_dl_options = {
-    "format": "bestaudio/best",
-}
+
 ffmpeg_options = {
+    'username': 'Oauth',
     'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
     'options': '-vn -filter:a "volume=1"',
 }
+yt_dl_options ={
+        'format': 'bestaudio/best',
+        'noplaylist': True,
+        'quiet': False,
+    }
+
 
 voice_clients = {}
 queues = {}
@@ -31,17 +38,21 @@ class music(commands.Cog):
 
         @bot.command()
         async def play(ctx, *, link):
+            if ctx.author.voice is None:
+                return await ctx.reply("You must be in a voice channel first.")
+            
             if not link:
-                return await ctx.send("Please provide a valid URL or search term.")
-
+                return await ctx.reply("Please provide a valid URL or search term.")
+            
+            if 'list' in link:
+                return await ctx.reply('The play command doesnt support playlist yet.')
+            
             if link.startswith("https://"):
                 await play_url(ctx, link)
             else:
                 await search_and_play(ctx, link)
 
         async def play_url(ctx, link):
-            if ctx.author.voice is None:
-                return await ctx.send("You must be in a voice channel first.")
 
             voice_client = voice_clients.get(ctx.guild.id)
 
@@ -53,6 +64,7 @@ class music(commands.Cog):
             data = await asyncio.to_thread(ytdl.extract_info, link, download=False)
             song = data["url"]
             song_name = data["title"]
+            duration = data['duration']
             if ctx.guild.id not in queues_name:
                 queues_name[ctx.guild.id] = []
             if ctx.guild.id not in queues:
@@ -83,7 +95,7 @@ class music(commands.Cog):
                 return await ctx.send("No results were found")
             
             result_text = "\n".join([
-                f"{idx + 1}. **{video['title']}** - {video['channel']} "
+                f"{idx + 1}. **{video['title']}** - {video['channel']} ({video['duration']})"
                 for idx, video in enumerate(results)
             ])
 

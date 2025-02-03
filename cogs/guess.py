@@ -1,8 +1,10 @@
 import json
+import requests
 import random
 import discord
 import asyncio
 import datetime
+import time
 from discord.ext import commands
 
 with open('fun/quizz/anime_data.json', 'r') as file:
@@ -247,7 +249,7 @@ class guess(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-        @bot.command(aliases=['guess'])
+        @bot.command()
         async def gues(ctx):
             guessB(ctx, None, None, None, None, 86400, 1, None, None)
 

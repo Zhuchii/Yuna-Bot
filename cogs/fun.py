@@ -8,6 +8,7 @@ from colorama import init, Fore, Back, Style
 from pytube import *
 import datetime
 import wordle
+import os
 
 ball_responses = [
     "It is certain",
@@ -298,8 +299,6 @@ class fun(commands.Cog):
                     embed.set_thumbnail(url=(user.avatar.url))
                     await message.edit(embed=embed)
             elif str(arg1)=='en':
-                
-            
                 autor= ctx.author.id
                 user= bot.get_user(autor)
                 palabra=random.choice(words_en).lower()
