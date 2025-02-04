@@ -7,7 +7,7 @@ The bot is already working add it to your server:
 
 [Here](https://discord.com/oauth2/authorize?client_id=1168867005101768714&permissions=1982663716304&scope=bot)
 
-The bot isnt online anymore bcz i cant figure out how to make the music commands work again on the VPS.
+
 
 ## Wanna host it by your self?
 
@@ -36,4 +36,4 @@ python main.py
 -FFmpeg
 
 
-P.D The image generation command is not working for some reason and thanks to youtube music isn't either so if i fix it i'll put the fix here and host back the bot ;)
+P.D The image generation command is not working for some reason and thanks to youtube music isn't either so if i fix it i'll put the fix here.
